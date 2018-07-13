@@ -1,0 +1,27 @@
+{
+    "name": "react-parcel-demo",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "dependencies": {
+        "aframe": "^0.8.2",
+        "react": ">= 0.14.0 < 17.0.0-0",
+        "react-dom": "^16.4.1",
+        "react-router-dom": "^4.3.1",
+        "styled-components": "^3.3.3",
+        "styled-system": "^2.3.6"
+    },
+    "devDependencies": {
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-react": "^6.24.1",
+        "parcel-bundler": "^1.9.6"
+    },
+    "scripts": {
+        "dev": "parcel ./src/index.html",
+        "build": "parcel build ./src/index.html --out-dir docs --public-url ./"
+    },
+    "presets": [
+        "env",
+        "react"
+    ]
+}
