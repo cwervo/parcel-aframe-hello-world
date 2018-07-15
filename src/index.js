@@ -3,6 +3,7 @@ import { render } from "react-dom";
 require("aframe")
 import styled from 'styled-components'
 import { space, width, fontSize, color } from 'styled-system'
+var Markdown = require('react-remarkable');
 
 // Add styled-system functions to your component
 const Title = styled.h1`
@@ -115,12 +116,33 @@ const About = () => (
 
 const Home = () => (
     <div>
-        <Title>Oh, hello, this is a title, yay!</Title>
-        <div id="myEmbeddedScene" style={{height: '300px', width: '600px'}}>
-            <a-scene embedded>
-                <a-box color="blue" position="0 0 -4"></a-box>
-            </a-scene>
-        </div>
+        {/* Use this to make a simple blog engine that reads posts from a directory (using node fs), and expects React components of this form:
+                <BlogPost>
+                    <Title> Title goes here </Title>
+                    <Date> Date goes here </Date>
+                    <Markdown>{`
+                    # once, I wrote a blog post ....
+                    `}</Markdown>
+                </BlogPost>
+
+            Oh, also, the template that all these get wrapped in should end with a simple: [@acwervo](https://twitter.com/intent/follow?screen_name=acwervo)
+                */}
+        <Markdown>{`
+## omg markdown
+
+1. Wow!
+2. This totally works, look [a link!](about#/about)
+        `}</Markdown>
+
+<Title>Oh, hello, this is a title, yay!</Title>
+<div id="myEmbeddedScene" style={{height: '300px', width: '600px'}}>
+    <a-scene embedded>
+        <a-box color="blue" position="0 0 -4"></a-box>
+    </a-scene>
+</div>
+
+Pretty neat!
+
     </div>
 )
 
