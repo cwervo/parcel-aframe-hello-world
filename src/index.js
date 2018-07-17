@@ -7,7 +7,7 @@ var Markdown = require('react-remarkable');
 
 // Add styled-system functions to your component
 const Title = styled.h1`
-  text-spacing: 1em;
+  letter-spacing: 0.1em;
   color: tomato;
 `
 
@@ -50,17 +50,17 @@ const PlayerAPI = {
 // The FullRoster iterates over all of the players and creates
 // a link to their profile page.
 const FullRoster = () => (
-    <div>
-        <ul>
-            {
-                PlayerAPI.all().map(p => (
-                    <li key={p.number}>
-                        <Link to={`/roster/${p.number}`}>{p.name}</Link>
-                    </li>
-                ))
-            }
-        </ul>
-    </div>
+<div>
+    <ul>
+        {
+            PlayerAPI.all().map(p => (
+                <li key={p.number}>
+                    <Link to={`/roster/${p.number}`}>{p.name}</Link>
+                </li>
+            ))
+        }
+    </ul>
+</div>
 )
 
 // The Player looks up the player using the number parsed from
@@ -85,38 +85,38 @@ const Player = (props) => {
 // The Roster component matches one of two different routes
 // depending on the full pathname
 const Roster = () => (
-    <Switch>
-        <Route exact path='/roster' component={FullRoster}/>
-        <Route path='/roster/:number' component={Player}/>
-    </Switch>
+<Switch>
+    <Route exact path='/roster' component={FullRoster}/>
+    <Route path='/roster/:number' component={Player}/>
+</Switch>
 )
 
 const Schedule = () => (
-    <div>
-        <ul>
-            <li>6/5 @ Evergreens</li>
-            <li>6/8 vs Kickers</li>
-            <li>6/14 @ United</li>
-        </ul>
-    </div>
+<div>
+    <ul>
+        <li>6/5 @ Evergreens</li>
+        <li>6/8 vs Kickers</li>
+        <li>6/14 @ United</li>
+    </ul>
+</div>
 )
 
 
 const About = () => (
-    <div>
-        <Title>About meeeeee ?</Title>
-        <div id="myEmbeddedScene" style={{height: '300px', width: '600px'}}>
-            <a-scene embedded>
-                <a-sky color="#BEE"></a-sky>
-                <a-box color="#BAE" position="0 0 -4"></a-box>
-            </a-scene>
-        </div>
+<div>
+    <Title>About meeeeee ?</Title>
+    <div class="a-scene">
+        <a-scene embedded>
+            <a-sky color="#BEE"></a-sky>
+            <a-box color="#BAE" position="0 0 -4"></a-box>
+        </a-scene>
     </div>
+</div>
 )
 
 const Home = () => (
-    <div>
-        {/* Use this to make a simple blog engine that reads posts from a directory (using node fs), and expects React components of this form:
+<div>
+    {/* Use this to make a simple blog engine that reads posts from a directory (using node fs), and expects React components of this form:
                 <BlogPost>
                     <Title> Title goes here </Title>
                     <Date> Date goes here </Date>
@@ -126,24 +126,27 @@ const Home = () => (
                 </BlogPost>
 
             Oh, also, the template that all these get wrapped in should end with a simple: [@acwervo](https://twitter.com/intent/follow?screen_name=acwervo)
-                */}
-        <Markdown>{`
+            */}
+            <Markdown>{`
 ## omg markdown
 
 1. Wow!
 2. This totally works, look [a link!](about#/about)
         `}</Markdown>
 
-<Title>Oh, hello, this is a title, yay!</Title>
-<div id="myEmbeddedScene" style={{height: '300px', width: '600px'}}>
-    <a-scene embedded>
-        <a-box color="blue" position="0 0 -4"></a-box>
-    </a-scene>
-</div>
+    <Title>Oh, hello, this is a title, yay!</Title>
+    <div>
+        <a-scene embedded>
+            <a-sky color="green" />
+            <a-box color="blue" position="0 0 -4">
+                <a-light position="0 1 0" intensity="0.2"></a-light>
+                <a-light position="-1 1 0" intensity="0.2"></a-light>
+            </a-box>
+        </a-scene>
 
-Pretty neat!
-
+        Pretty neat!
     </div>
+</div>
 )
 
 // The Main component renders one of the three provided
@@ -152,42 +155,44 @@ Pretty neat!
 // with /roster or /schedule. The / route will only match
 // when the pathname is exactly the string "/"
 const Main = () => (
-    <main>
-        <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route path='/about' component={About}/>
-            <Route path='/roster' component={Roster}/>
-            <Route path='/schedule' component={Schedule}/>
-        </Switch>
-    </main>
+<main>
+    <Switch>
+        <Route exact path='/' component={Home}/>
+        <Route path='/about' component={About}/>
+        <Route path='/roster' component={Roster}/>
+        <Route path='/schedule' component={Schedule}/>
+    </Switch>
+</main>
 )
 
 // The Header creates links that can be used to navigate
 // between routes.
 const Header = () => (
-    <header>
-        <nav>
-            <ul>
-                <li><Link to='/'>Home</Link></li>
-                <li><Link to='/about'>About</Link></li>
-                {/* <li><Link to='/roster'>Roster</Link></li> */}
-                {/* <li><Link to='/schedule'>Schedule</Link></li> */}
-            </ul>
-        </nav>
-    </header>
+<header>
+    <nav>
+        <ul id="nav-list">
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/about'>About</Link></li>
+            <li><Link to='/about'>Fake link 1</Link></li>
+            <li><Link to='/about'>Fake link 2</Link></li>
+            {/* <li><Link to='/roster'>Roster</Link></li> */}
+            {/* <li><Link to='/schedule'>Schedule</Link></li> */}
+        </ul>
+    </nav>
+</header>
 )
 
 const App = () => (
-    <div>
-        <Header />
-        <Main />
-    </div>
+<div id="main-container">
+    <Header />
+    <Main />
+</div>
 )
 
 // This demo uses a HashRouter instead of BrowserRouter
 // because there is no server to match URLs
 render((
-    <HashRouter>
-        <App />
-    </HashRouter>
+<HashRouter>
+    <App />
+</HashRouter>
 ), document.getElementById('app'))
